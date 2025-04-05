@@ -1,0 +1,46 @@
+otam = {
+    "ism": "Rahmatilla",
+    "tugilgan_yili": 1977,
+    "tugilgan_manzili": "Samarqand viloyati Kattaqo`rg`on tumani Kattaming qishlog`i",
+    "yashash_manzili": "Navoiy viloyati Zarafshon shahar"
+}
+
+onam = {
+    "ism": "Mehriniso",
+    "tugilgan_yili": 1982,
+    "tugilgan_manzili": "Samarqand viloyati Kattaqo`rg`on tumani Kattaming qishlog`i",
+    "yashash_manzili": "Navoiy viloyati Zarafshon shahar"
+}
+
+ukam = {
+    "ism": "Sardor",
+    "tugilgan_yili": 2010,
+    "tugilgan_manzili": "Navoiy viloyati Zarafshon shahar",
+    "yashash_manzili": "Navoiy viloyati Zarafshon shahar"
+}
+
+# Har bir inson haqida ma'lumotni chiqaramiz
+print(f"Otamning ismi: {otam['ism']}")
+print(f"Otam {otam['tugilgan_yili']}-yilda {otam['tugilgan_manzili']}da tug'ilgan")
+print(f"Hozir {otam['yashash_manzili']}da yashaydi\n")
+
+print(f"Onamning ismi: {onam['ism']}")
+print(f"Onam {onam['tugilgan_yili']}-yilda {onam['tugilgan_manzili']}da tug'ilgan")
+print(f"Hozir {onam['yashash_manzili']}da yashaydi\n")
+
+print(f"Ukamning ismi: {ukam['ism']}")
+print(f"Ukam {ukam['tugilgan_yili']}-yilda {ukam['tugilgan_manzili']}da tug'ilgan")
+print(f"Hozir {ukam['yashash_manzili']}da yashaydi")
+
+#Bundan hosil bo`lgan natija:
+Otamning ismi: Rahmatilla
+Otam 1977-yilda Samarqand viloyati Kattaqo`rg`on tumani Kattaming qishlog`ida tug'ilgan
+Hozir Navoiy viloyati Zarafshon shaharda yashaydi
+
+Onamning ismi: Mehriniso
+Onam 1982-yilda Samarqand viloyati Kattaqo`rg`on tumani Kattaming qishlog`ida tug'ilgan
+Hozir Navoiy viloyati Zarafshon shaharda yashaydi
+
+Ukamning ismi: Sardor
+Ukam 2010-yilda Navoiy viloyati Zarafshon shaharda tug'ilgan
+Hozir Navoiy viloyati Zarafshon shaharda yashaydi
