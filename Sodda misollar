@@ -1,0 +1,29 @@
+import math
+
+def uchburchak_yuza_va_perimetr(x1, y1, x2, y2, x3, y3):
+    # Tomonlarni hisoblash
+    a = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+    b = math.sqrt((x3 - x2)**2 + (y3 - y2)**2)
+    c = math.sqrt((x1 - x3)**2 + (y1 - y3)**2)
+    
+    # Perimetr
+    perimeter = a + b + c
+    
+    # Yarim perimetr
+    s = perimeter / 2
+    
+    # Heron formulasi yordamida yuzani hisoblash
+    area = math.sqrt(s * (s - a) * (s - b) * (s - c))
+    
+    return area, perimeter
+
+# Uchburchak uchlarining koordinatalari
+x1, y1 = 0, 0
+x2, y2 = 3, 0
+x3, y3 = 0, 4
+
+# Hisoblash
+yuza, perimetr = uchburchak_yuza_va_perimetr(x1, y1, x2, y2, x3, y3)
+
+print(f"Uchburchak yuzi: {yuza}")
+print(f"Uchburchak perimetri: {perimetr}")
