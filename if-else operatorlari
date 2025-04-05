@@ -1,0 +1,13 @@
+k, l = map(int, input("Ruhrning boshlang'ich joyi (k l): ").split())
+m, n = map(int, input("Ruhrning maqsad joyi (m n): ").split())
+
+# Bir yurishda o'tish tekshiruvi
+if k == m or l == n:
+    print("Ha, ruh bir yurishda o'tishi mumkin.")
+else:
+    print("Yo'q, bir yurishda o'ta olmaydi. Ikkita yurish kerak:")
+    print(f"1. Birinchi yurish: ({k}, {n}) yoki ({m}, {l})")
+# Bundan hosil bo`lgan natija:
+Ruhrning boshlang'ich joyi (k l): 2 3
+Ruhrning maqsad joyi (m n): 5 3
+Ha, ruh bir yurishda o'tishi mumkin.
