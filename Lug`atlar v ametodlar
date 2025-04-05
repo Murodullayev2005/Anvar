@@ -1,46 +1,12 @@
-otam = {
-    "ism": "Ali",
-    "tugilgan_yili": 1975,
-    "tugilgan_manzili": "Toshkent",
-    "yashash_manzili": "Samarqand"
+sevimli_taomlar = {
+    "otam": ["osh", "sho`rva"],
+    "onam": ["osh", "manti"],
+    "ukam": ["somsa", "shashlik"],
+
 }
-
-onam = {
-    "ism": "Dilfuza",
-    "tugilgan_yili": 1980,
-    "tugilgan_manzili": "Buxoro",
-    "yashash_manzili": "Samarqand"
-}
-
-ukam = {
-    "ism": "Hasan",
-    "tugilgan_yili": 2005,
-    "tugilgan_manzili": "Samarqand",
-    "yashash_manzili": "Samarqand"
-}
-
-# Har bir inson haqida ma'lumotni chiqaramiz
-print(f"Otamning ismi: {otam['ism']}")
-print(f"Otam {otam['tugilgan_yili']}-yilda {otam['tugilgan_manzili']}da tug'ilgan")
-print(f"Hozir {otam['yashash_manzili']}da yashaydi\n")
-
-print(f"Onamning ismi: {onam['ism']}")
-print(f"Onam {onam['tugilgan_yili']}-yilda {onam['tugilgan_manzili']}da tug'ilgan")
-print(f"Hozir {onam['yashash_manzili']}da yashaydi\n")
-
-print(f"Ukamning ismi: {ukam['ism']}")
-print(f"Ukam {ukam['tugilgan_yili']}-yilda {ukam['tugilgan_manzili']}da tug'ilgan")
-print(f"Hozir {ukam['yashash_manzili']}da yashaydi")
-
+for kishi, taomlar in sevimli_taomlar.items():
+    print(f"{kishi.capitalize()}ning sevimli taomlari: {taomlar[0]} va {taomlar[1]}")
 #Bundan Pythonda hosil bo`lgan natija:
-Otamning ismi: Ali
-Otam 1975-yilda Toshkentda tug'ilgan
-Hozir Samarqandda yashaydi
-
-Onamning ismi: Dilfuza
-Onam 1980-yilda Buxoroda tug'ilgan
-Hozir Samarqandda yashaydi
-
-Ukamning ismi: Hasan
-Ukam 2005-yilda Samarqandda tug'ilgan
-Hozir Samarqandda yashaydi
+Otamning sevimli taomlari: osh va sho`rva
+Onamning sevimli taomlari: osh va manti
+Ukamning sevimli taomlari: somsa va shashlik
