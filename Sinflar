@@ -1,0 +1,61 @@
+class KO_PHAD:
+    def __init__(self, daraja, koeffitsientlar):
+
+        self.daraja = daraja
+        self.koeffitsientlar = koeffitsientlar
+
+        # Agar koeffitsientlar soni darajadan birga ko'p bo'lmasa, xato
+        if len(self.koeffitsientlar) != self.daraja + 1:
+            raise ValueError("Koeffitsientlar soni daraja + 1 ga teng bo'lishi kerak")
+
+    def qiymat(self, x):
+        natija = 0
+        for i in range(self.daraja + 1):
+            natija += self.koeffitsientlar[i] * (x ** (self.daraja - i))
+        return natija
+
+    def __str__(self):
+        if self.daraja == 0:
+            return str(self.koeffitsientlar[0])
+
+        terms = []
+        for i in range(len(self.koeffitsientlar)):
+            power = self.daraja - i
+            coeff = self.koeffitsientlar[i]
+
+            if coeff == 0:
+                continue
+
+            if power == 0:
+                term = f"{coeff}"
+            elif power == 1:
+                term = f"{coeff}x" if coeff != 1 else "x"
+            else:
+                term = f"{coeff}x^{power}" if coeff != 1 else f"x^{power}"
+
+            terms.append(term)
+
+        return " + ".join(terms).replace("+ -", "- ")
+
+#Bu kod uchun yozilgan misol
+# Misol:
+if __name__ == "__main__":
+    # 2x^3 + 3x^2 + 4x + 5 ko'phadi
+    k1 = KO_PHAD(3, [2, 3, 4, 5])
+    print(f"Ko'phad: {k1}")
+    x = 2
+    print(f"Ko'phadning x={x} dagi qiymati: {k1.qiymat(x)}")
+
+    # x^2 - 2x + 1 ko'phadi
+    k2 = KO_PHAD(2, [1, -2, 1])
+    print(f"\nKo'phad: {k2}")
+    x = 1
+    print(f"Ko'phadning x={x} dagi qiymati: {k2.qiymat(x)}")
+
+#Bundan hosil bo`lgan natija
+Ko'phad: 2x^3 + 3x^2 + 4x + 5
+Ko'phadning x=2 dagi qiymati: 41
+
+Ko'phad: x^2 - 2x + 1
+Ko'phadning x=1 dagi qiymati: 0
+
