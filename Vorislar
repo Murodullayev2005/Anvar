@@ -1,0 +1,126 @@
+class KO_PHAD:
+    def __init__(self, coefficients=None):
+        """
+        Ko'phad sinfi konstruktori.
+        coefficients - koeffitsientlar ro'yxati (eng past darajadan boshlab)
+        Masalan: [1, 2, 3] -> 1 + 2x + 3x^2
+        """
+        if coefficients is None:
+            coefficients = []
+        self.coefficients = coefficients
+    
+    def read_coefficients(self):
+        """
+        Foydalanuvchidan ko'phad koeffitsientlarini o'qib oladi.
+        """
+        print("Ko'phad koeffitsientlarini kiriting (eng past darajadan boshlab):")
+        self.coefficients = list(map(float, input().split()))
+    
+    def print_polynomial(self):
+        """
+        Ko'phadni chiroyli shaklda chop etadi.
+        """
+        terms = []
+        for power, coeff in enumerate(self.coefficients):
+            if coeff == 0:
+                continue
+            if power == 0:
+                terms.append(f"{coeff:.2f}")
+            elif power == 1:
+                terms.append(f"{coeff:.2f}x")
+            else:
+                terms.append(f"{coeff:.2f}x^{power}")
+        
+        if not terms:
+            print("0")
+        else:
+            print(" + ".join(terms))
+    
+    def evaluate(self, x):
+        """
+        Ko'phadning berilgan x nuqtadagi qiymatini hisoblaydi.
+        """
+        result = 0.0
+        for power, coeff in enumerate(self.coefficients):
+            result += coeff * (x ** power)
+        return result
+
+
+class SHEBISHEV(KO_PHAD):
+    def __init__(self, k):
+        """
+        Chebishev ko'phadi sinfi konstruktori.
+        k - Chebishev ko'phadining tartibi
+        """
+        super().__init__()
+        self.k = k
+        self.calculate_coefficients()
+    
+    def calculate_coefficients(self):
+        """
+        Chebishev ko'phadi koeffitsientlarini rekursiv formulalar yordamida hisoblaydi.
+        """
+        if self.k == 0:
+            self.coefficients = [1.0]
+            return
+        elif self.k == 1:
+            self.coefficients = [0.0, 1.0]
+            return
+        
+        # Rekursiv hisoblash
+        T_prev_prev = [1.0]      # T0(x) = 1
+        T_prev = [0.0, 1.0]      # T1(x) = x
+        
+        for n in range(2, self.k + 1):
+            # Tn(x) = 2x*T_{n-1}(x) - T_{n-2}(x)
+            # 2x*T_{n-1} ni hisoblaymiz
+            temp1 = [0.0] + [2 * coeff for coeff in T_prev]
+            # T_{n-2} ni hisoblaymiz
+            temp2 = T_prev_prev.copy()
+            # Uzunliklarni tenglashtiramiz
+            max_len = max(len(temp1), len(temp2))
+            temp1 += [0.0] * (max_len - len(temp1))
+            temp2 += [0.0] * (max_len - len(temp2))
+            # Ayirmani hisoblaymiz
+            T_current = [a - b for a, b in zip(temp1, temp2)]
+            
+            # Keyingi qadam uchun qiymatlarni yangilaymiz
+            T_prev_prev, T_prev = T_prev, T_current
+        
+        self.coefficients = T_prev
+    
+    def evaluate(self, x):
+        """
+        Chebishev ko'phadining qiymatini rekursiv usulda hisoblaydi.
+        Bu usul katta k lar uchun samaraliroq.
+        """
+        if self.k == 0:
+            return 1.0
+        elif self.k == 1:
+            return x
+        
+        T_prev_prev = 1.0  # T0(x)
+        T_prev = x         # T1(x)
+        
+        for n in range(2, self.k + 1):
+            T_current = 2 * x * T_prev - T_prev_prev
+            T_prev_prev, T_prev = T_prev, T_current
+        
+        return T_prev
+
+
+# Test qismi
+if __name__ == "__main__":
+    print("Oddiy ko'phad sinfi testi:")
+    poly = KO_PHAD([1, 2, 3])  # 1 + 2x + 3x^2
+    poly.print_polynomial()
+    print(f"x=2.0 uchun qiymat: {poly.evaluate(2.0):.2f}")
+    
+    print("\nChebishev ko'phadi sinfi testi:")
+    k = int(input("Chebishev ko'phadi tartibini kiriting (k >= 0): "))
+    cheb = SHEBISHEV(k)
+    print(f"T{k}(x) ko'phadi:")
+    cheb.print_polynomial()
+    
+    x = float(input("Ko'phad qiymatini hisoblash uchun x ni kiriting: "))
+    print(f"T{k}({x}) = {cheb.evaluate(x):.4f}")
